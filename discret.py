@@ -10,4 +10,5 @@ arr=[]
 n=200
 for i in range(1,n):
     arr.append(pi/(n+1-i))
-print(find_integral(arr,.01))
+h= pi/n
+print(find_integral(arr,h))
