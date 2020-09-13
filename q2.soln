@@ -1,0 +1,49 @@
+#   method 1
+#	intersectLines(Line 1, Line 2) is of class Line . 
+#	The method return type is of class Point
+#   method 2
+#	LineCircleintersect(Line 1 , Circle c)
+#	The method return type is of class Point
+#   method 3
+#	Length (Point 1 , Point 2)
+#	The method return type is of Float
+#   method 4
+#	intersectCircles(Circle c1 , Circle c2):
+#	The method return type is of class Point
+
+#	for square root of an integer a
+a = int(input("Enter the value of a: "))
+class Point :
+	def __init__(self,x,y) :
+		self.x = x # x coordinate
+		self.y = y #y coordinate
+class Line :
+	def __init__(self,a,b):
+		self.a = a #point a
+		self.b = b #point b
+class Circle :
+	def __init__(self,a,radius) :
+		self.center = a #center point
+		self.rad = radius #radius of circle
+
+#po --> point
+#ci --> circle
+#li --> line
+def perpendiculaar(po1,Li1) :
+	(po2,po3) = Li1
+	len1 = Length(po1,po2)
+	len2 = Length(po1,po3)
+	cpo1 = (po2+po1)/2 #midpoint of po2, and po1
+	cpo2 = (po3+po1)/2	#midpoint of po1 and po3
+	ci1 = Circle(cpo1,len1/2)
+	ci2 = Circle(cpo2,len2/2)
+	(po4,po5) = intersectCircle(ci1,ci2)
+	return Line(po4,po5)
+def squareroot(a):
+	po = Point(((a+1)/2),0)
+	Ci1 = Circle (p,((a+1)/2))
+	po1 = Point(a,0)
+	po2 = Point(a,3)
+	Li1 = Line (po1,po2)
+	(po3,po4) = LineCircleintersect(Li1,Ci1)
+	return Length(po3,po4)

@@ -1,0 +1,21 @@
+a=input().split()
+b=input().split()
+n=int(len(a)**(1/2))
+m1=[]
+m2=[]
+for k in range(n):
+	m1.append([int(a[j]) for j in range(k,n**2,n)])
+	m2.append([int(b[j]) for j in range(k,n**2,n)])
+
+final = [[0 for x in range(n)] for y in range(n)]  
+ 
+for i in range(len(m1)): 
+    for j in range(len(m2[0])): 
+        for k in range(len(m2)): 
+            final[i][j] += m1[i][k] * m2[k][j] 
+
+L=[]
+for a in range(n):
+	for b in range(n):
+		L.append(final[a][b])
+print(L)

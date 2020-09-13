@@ -1,0 +1,54 @@
+"""
+a) its necessary to reduce the number of multiplication because if we have 4 multiplications then time complexity will be n^(log_2 4) == n^2  and no benefit of using this algorithm but if we confine ourselves to 3 multiplications then complexity will be n^(log_2 3) 
+b) 
+digits in x,y  = n = 2^k
+so num of digits in a,b,c,d = n div 2 = 2^(k-1) (since x= a*10^(n div2)+b so a and b have n div 2 digits)
+T(n) = 3T(n/2)+O(p) because we are carrying out multiplications where no of digits is half and O(p) is time for adding those 3 entities
+solving the recurrence relation we get 
+T(n) = O(n^(log_2(3)))  BIG O COMPLEXITY
+"""
+def add(a,b):
+    N= len(a)
+    lb=len(b)
+    if lb!=N:
+        b = [0]*(N-lb)+b 
+    ans= [0]*N
+    for i in range(N):
+        if i!=N-1:
+            ans[i]=(a[i]+b[i])%10 + (a[(i+1)]+b[(i+1)])//10 
+            ans[i]=(a[i]+b[i])%10 
+    if (a[0]+b[0])//10>0:
+        print(ans)
+        ans = [(a[0]+b[0])//10]+ans  
+    return ans
+
+def minus(arr):
+    arr=[-1*i for i in arr]
+    return arr
+def multi(arr1,arr2,n):
+    e=n//2
+    a = arr1[:e]
+    print(a)
+    b= arr1[e:]
+    print(b)
+    c = arr2[:e]
+    print(c)
+    d = arr2[e:]
+    print(d)
+    if e == 1:
+        u = [(a[0],b[0])*(c[0]+d[0])]
+        v = [a[0]*c[0]]
+        w = [b[0]*d[0]] 
+        z = add(v+[0]*10**(2*e),add(add(u,(minus(add(v,w))))+[0]*10**(e),w))
+    else:
+        u = multi(add(a,b),add(c,d))
+        v = multi(a,c)
+        w = multi(b,d) 
+        z = add(v+[0]*10**(2*e),add(add(u,(minus(add(v,w))))+[0]*10**(e),w))
+    return z
+N = int(input())
+a = [int(i) for i in input()]
+b = [int(j) for j in input()]
+print(a,b)
+# print(add(a,b,N))#print sum of a,b
+print(multi(a,b,N))#print multiplication of a,b

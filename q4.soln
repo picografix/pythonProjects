@@ -1,0 +1,18 @@
+"""a) No floating point numbers are not finite since we know Natural numbers are infinite and between any two natural number we can find a floating point number hence floating point numbers must be infinite.
+b) Yes floating point numbers are dense by continuity theorem of Real numbers
+c) Yes floating point numbers are cummutative w.r.t. addition and multiplication
+d) they may not be associative eg 
+    0.1(0.111*0.001) = 0.1*0.000111(correct upto 3 decimal places) = 0.0000111 (correct upto 1 decimal places )
+    (0.1*0.111)*0.001 = 0.0111(correct upto 1 decimal place)*0.001 
+
+e) Floating point numbers are non uniform which creates a problem in calculus
+"""
+def solve(a,b,c,d,e,f):
+    y = (c/a - f/d)/(b/a - e/d)
+    x =  (c/b - f/e)/(a/b - d/e)
+    return x,y
+a,b,c,d,e,f = map(float,(input().rstrip().split()))
+print(solve(a,b,c,d,e,f))
+#this code find solutions of linear equations in two variables
+#for given equations we have (1400.1000000001068, 699.8000000000001) as solution 
+# (1750.0000000001926, 874.750000000233) for second part  

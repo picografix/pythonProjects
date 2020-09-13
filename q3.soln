@@ -1,0 +1,22 @@
+def pascal(n,k):
+    if k==0 or k==n:
+        return 1
+    else:
+        return pascal(n-1,k)+pascal(n-1,k-1)
+
+n,k=map(int,input().split())
+print(pascal(n,k))
+# #Proof Of Correctness
+# In Pascal's Triangle, we have pascal(p,q)=pCq where C is the combinatorics operator
+
+# Basis:  pascal(n,0) = 1 = pascal(n,n)
+# Induction Hypothesis: pascal(n,k) = pascal(n-1,k)+pascal(n-1,k-1) let for all x,y <= n,k pascal(n,k) is true
+# Induction Step: pascal(n,k) =  pascal(n-1,k)+pascal(n-1,k-1) by mathematical formula 
+#                             =  Induction hypothesis
+# hence proved 
+
+
+# #Time Complexity
+# T(n,k) = T(n-1,k) + T(n-1,k-1)
+# T(n)=2T(n-1)
+# t(n) = O(2^n)
